@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -117,7 +117,6 @@ it can pass the method the :code:`WaitHandle` returned by the :code:`IAsyncResul
 property of the :code:`IAsyncResult` return value. The method can then wait for the asynchronous
 operation to complete by calling :code:`WaitOne` on this :code:`WaitHandle`.
 
-
 .. _sdk-net-async-examples:
 
 Examples
@@ -125,34 +124,9 @@ Examples
 
 All of the following examples assume the following initialization code.
 
-.. code-block:: csharp
-
-    public static void TestPutObjectAsync() 
-    { 
-      // Create a client AmazonS3Client 
-      client = new AmazonS3Client(); 
-      
-      PutObjectResponse response; 
-      IAsyncResult asyncResult; 
-      
-      // 
-      // Create a PutObject request 
-      // 
-      // You will need to use your own bucket name below in order 
-      // to run this sample code. 
-      // 
-      PutObjectRequest request = new PutObjectRequest 
-      { 
-        BucketName = "{PUT YOUR OWN EXISTING BUCKET NAME HERE}",
-        Key = "Item",
-        ContentBody = "This is sample content..."
-      };
-    
-      //
-      // additional example code
-      //
-    }
-
+.. literalinclude:: s3.dotnet.putobject.async.testputobjectasync.start.txt
+   :language: csharp
+   :dedent: 8
 
 No Callback Specified
 ~~~~~~~~~~~~~~~~~~~~~
@@ -161,36 +135,18 @@ The following example code calls :code:`BeginPutObject`, performs some work, and
 :code:`EndPutObject` to retrieve the service response. The call to :code:`EndPutObject` is enclosed
 in a :code:`try` block to catch any exceptions that might have been thrown during the operation.
 
-.. code-block:: csharp
-
-    asyncResult = client.BeginPutObject(request, null, null);
-    while ( ! asyncResult.IsCompleted ) {
-      //
-      // Do some work here
-      //
-    }
-    try {
-      response = client.EndPutObject(asyncResult);
-    }
-    catch (AmazonS3Exception s3Exception) {
-      //
-      // Code to process exception
-      //
-    }
-
-
+.. literalinclude:: s3.dotnet.putobject.async.testputobjectasync.beginputobject.txt
+   :language: csharp
+   :dedent: 12
 
 Simple Callback
 ~~~~~~~~~~~~~~~
 
 This example assumes the following callback function has been defined.
 
-.. code-block:: csharp
-
-    public static void SimpleCallback(IAsyncResult asyncResult)
-    {
-      Console.WriteLine("Finished PutObject operation with simple callback");
-    }
+.. literalinclude:: s3.dotnet.putobject.async.simplecallback.txt
+   :language: csharp
+   :dedent: 8
 
 The following line of code calls :code:`BeginPutObject` and specifies the above callback function.
 When the :code:`PutObject` operation is complete, the callback function is called. The call to
@@ -200,32 +156,18 @@ parameter. Neither the calling code or the callback function call :code:`EndPutO
 the service response is effectively discarded and any exceptions that occur during the operation are
 ignored.
 
-.. code-block:: csharp
-
-    asyncResult = client.BeginPutObject(request, SimpleCallback, null);
-
-
+.. literalinclude:: s3.dotnet.putobject.async.testputobjectasync.simplecallback.txt
+   :language: csharp
+   :dedent: 12
 
 Callback with Client
 ~~~~~~~~~~~~~~~~~~~~
 
 This example assumes the following callback function has been defined.
 
-.. code-block:: csharp
-
-    public static void CallbackWithClient(IAsyncResult asyncResult)
-    {
-      try {
-        AmazonS3Client s3Client = (AmazonS3Client) asyncResult.AsyncState;
-        PutObjectResponse response = s3Client.EndPutObject(asyncResult);
-        Console.WriteLine("Finished PutObject operation with client callback");
-      }
-      catch (AmazonS3Exception s3Exception) {
-        //
-        // Code to process exception
-        //
-      }
-    }
+.. literalinclude:: s3.dotnet.putobject.async.callbackwithclient.txt
+   :language: csharp
+   :dedent: 8
 
 The following line of code calls :code:`BeginPutObject` and specifies the preceding callback
 function. When the :code:`PutObject` operation is complete, the callback function is called. In this
@@ -234,54 +176,22 @@ parameter. The callback function uses the client to call the :code:`EndPutObject
 the server response. Because any exceptions that occurred during the operation will be received when
 the callback calls :code:`EndPutObject`, this call is placed within a :code:`try` block.
 
-.. code-block:: csharp
-
-    asyncResult = client.BeginPutObject(request, CallbackWithClient, client);
-
-
+.. literalinclude:: s3.dotnet.putobject.async.testputobjectasync.callbackwithclient.txt
+   :language: csharp
+   :dedent: 12
 
 Callback with State Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This example assumes the following class and callback function have been defined.
 
-.. code-block:: csharp
+.. literalinclude:: s3.dotnet.putobject.async.clientstate.txt
+   :language: csharp
+   :dedent: 4
 
-    class ClientState
-    {
-      AmazonS3Client client;
-      DateTime startTime;
-    
-      public AmazonS3Client Client
-      {
-        get { return client; }
-        set { client = value; }
-      }
-    
-      public DateTime Start
-      {
-        get { return startTime; }
-        set { startTime = value; }
-      }
-    }
-
-.. code-block:: csharp
-
-    public static void CallbackWithState(IAsyncResult asyncResult)
-    {
-      try {
-        ClientState state = asyncResult.AsyncState as ClientState;
-        AmazonS3Client s3Client = (AmazonS3Client)state.Client;
-        PutObjectResponse response = state.Client.EndPutObject(asyncResult);
-        Console.WriteLine("Finished PutObject. Elapsed time: {0}",
-          (DateTime.Now - state.Start).ToString());
-      }
-      catch (AmazonS3Exception s3Exception) {
-        //
-        // Code to process exception
-        //
-      }
-    }
+.. literalinclude:: s3.dotnet.putobject.async.callbackwithstate.txt
+   :language: csharp
+   :dedent: 8
 
 The following line of code calls :code:`BeginPutObject` and specifies the above callback function.
 When the :code:`PutObject` operation is complete, the callback function is called. In this example,
@@ -295,12 +205,9 @@ complete.
 As in the previous examples, because exceptions that occur during the operation are received when
 :code:`EndPutObject` is called, this call is placed within a :code:`try` block.
 
-.. code-block:: csharp
-
-    asyncResult = client.BeginPutObject(
-      request, CallbackWithState, new ClientState { Client = client, Start = DateTime.Now } );
-
-
+.. literalinclude:: s3.dotnet.putobject.async.testputobjectasync.callbackwithstate.txt
+   :language: csharp
+   :dedent: 12
 
 .. _sdk-net-async-complete-code:
 
@@ -310,9 +217,8 @@ Complete Sample
 The following code sample demonstrates the patterns you can use when calling the asynchronous
 request methods.
 
-.. literalinclude:: samples/async_net35_complete.cs
-    :language: csharp
-
+.. literalinclude:: s3.dotnet.putobject.async.complete.txt
+   :language: csharp
 
 .. _sdk-net-async-see-also:
 

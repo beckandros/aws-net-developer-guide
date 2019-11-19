@@ -103,6 +103,89 @@ module and the AWS CLI.
 
 To get started with |TTSlong|, see  `AWS Tools for Microsoft Visual Studio Team Services <https://aws.amazon.com/vsts/>`_.
 
+.. _version_3.5:
+
+What's New in Version 3.5
+=========================
+
+This version of the SDK supports only .NET Standard 2.0.
+This means you might have to change some of your existing code to use this version.
+
+This version of the SDK supports only asynchronous calls to |AWS| services.
+This means that you will have to change any code that uses the old **begin/end** methods.
+See
+:ref:`net-dg-v35`
+for information on adapting V3.0 apps to V3.5.
+
+This version of the SDK contains high-level level abstractions
+that make using |COGSYNClong| and |MAlong| easier.
+As such, these have been removed from the SDK.
+Use |PINlong| instead of |MAlong|; 
+use |APSYlong| instead of |COGSYNClong|.
+
+.. _xamarin:
+
+Xamarin
+-------
+
+Xamarin apps must target .NET Standard 2.0.
+See 
+`.NET Standard 2.0 Support in Xamarin.Forms <https://docs.microsoft.com/en-us/xamarin/xamarin-forms/internals/net-standard>`_
+and
+`.NET implementation support <https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support>`_.
+
+.. _unity:
+
+Unity
+-----
+
+Unity apps must target .NET Standard 2.0 or .NET 4.x profiles using Unity 2018.1 or later.
+See
+`.NET profile support <https://docs.unity3d.com/2020.1/Documentation/Manual/dotnetProfileSupport.html>`_.
+In addition, if you are using **IL2CPP** to build,
+you must disable code stripping by adding a *link.xml* file.
+See
+`Referencing the AWS SDK for .NET Standard 2.0 from Unity, Xamarin, or UWP <https://aws.amazon.com/blogs/developer/referencing-the-aws-sdk-for-net-standard-2-0-from-unity-xamarin-or-uwp>`_.
+
+Once you've ported your code to one of the recommend code bases,
+your Unity app can now access all of the services offered by the SDK.
+Since .NET Standard 2.0 natively supports Unity,
+**AWSSDK.Core** no longer has Unity-specific code.
+
+.. _uwp:
+
+Universal Windows Platform (UWP)
+--------------------------------
+
+UWP apps must target version 16299 or later.
+See
+`Choose a UWP version <https://docs.microsoft.com/en-us/windows/uwp/updates-and-versions/choose-a-uwp-version>`_.
+
+.. _phone_silverlight:
+
+Windows Phone, Silverlight
+--------------------------
+
+This version of the SDK does not support these platforms as
+Microsoft has placed these platforms on an end-of-life path.
+See
+`Windows 10 Mobile End of Support: FAQ <https://support.microsoft.com/en-us/help/4485197/windows-10-mobile-end-of-support-faq>`_
+and
+`Silverlight End of Support <https://support.microsoft.com/en-us/help/4511036/silverlight-end-of-support>`_.
+
+.. _legacy:
+
+Legacy Portable Class Libraries (Profile-Based PCLs)
+----------------------------------------------------
+
+Retarget these apps to the .NET Standard.
+See
+`Comparison to Portable Class Libraries <https://docs.microsoft.com/en-us/dotnet/standard/net-standard#comparison-to-portable-class-libraries>`_.
+
+
+
+
+
 .. _guidemap:
 
 How to Use This Guide

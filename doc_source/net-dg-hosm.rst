@@ -71,7 +71,7 @@ bucket.
 For more information about creating an |S3| bucket and uploading an object,
 see the |S3-gsg|_. For more information about AWS credentials, see :ref:`net-dg-config-creds`.
 
-.. literalinclude:: samples/iamroles.cs
+.. literalinclude:: s3.dotnet.getobjectasync.complete.txt
     :language: csharp
 
 .. topic:: To test the sample code
