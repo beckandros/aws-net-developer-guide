@@ -25,7 +25,7 @@ Making Asynchronous Calls to |AWS| Services
 ===========================================
 
 You must use asynchronous methods in this version of the SDK.
-For example, here is some code to list the URLs of your |SQS| queues.
+For example, here is some 3.0 code to list the URLs of your |SQS| queues.
 
 .. code-block:: c#
 
@@ -38,8 +38,8 @@ For example, here is some code to list the URLs of your |SQS| queues.
        Console.WriteLine(queueUrl);
    }
 
- Use
- :sdk-net-api:`ListQueuesAsync <SQS/MSQSListQueuesAsyncStringCancellationToken>`
+Use
+:sdk-net-api:`ListQueuesAsync <SQS/MSQSListQueuesAsyncStringCancellationToken>`
 instead:
 
 .. code-block:: c#

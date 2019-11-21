@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -11,10 +11,10 @@
 .. _top:
 
 ################################
-|sdk-net| Developer Guide v3.0.0
+|sdk-net| Developer Guide v3.5.0
 ################################
 
-This documentation is for the current version of the |sdk-net|, **3.0**.
+This documentation is for the current version of the |sdk-net|, **3.5**.
 
 .. meta::
     :description: Developer Guide for the AWS SDK for .NET
