@@ -8,30 +8,24 @@
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
 
-.. _top:
-
-################################
-|sdk-net| Developer Guide v3.5.0
-################################
-
-This documentation is for the current version of the |sdk-net|, **3.5**.
+###############################
+Security for |SERVICENAMETITLE|
+###############################
 
 .. meta::
-    :description: Developer Guide for the AWS SDK for .NET
-    :keywords: .net, sdk, aws
+   :description: Provides security-related information for this AWS product or service.
+   :keywords:
+
+.. include:: common/_security-includes.txt
+
+.. include:: common/_security.txt
 
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
-   :includehidden:
+   :titlesonly:
 
-   welcome
-   net-dg-setup
-   net-dg-programming-techniques
-   tutorials-examples
-   Security <security>
-   net-dg-additional-resources
-   document-history
-
-.. include:: about-aws.txt
-
+   Data Protection <data-protection>
+   Identity and Access Management <common/security-iam>
+   Compliance Validation <common/compliance-validation>
+   Resilience <common/disaster-recovery-resiliency>
+   Infrastructure Security <common/infrastructure-security>
